@@ -1,0 +1,11 @@
+const express = require("express")
+const app = express()
+const dotenv = require("dotenv")
+dotenv.config()
+const connectionDb = require("./db/connection/connection-db")
+connectionDb()
+app.use(express.json())
+app.use("/auth", require("./routes/auth"))
+app.use("/posts",require("./routes/job-post"))
+const PORT = process.env.PORT || 4444
+app.listen(PORT,()=> {console.log(`Server is running at ${PORT}`)})
